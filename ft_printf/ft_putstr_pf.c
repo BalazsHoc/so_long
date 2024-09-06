@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putstr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 10:38:43 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/09/06 10:38:45 by bhocsak          ###   ########.fr       */
+/*   Created: 2024/05/01 16:49:59 by bhocsak           #+#    #+#             */
+/*   Updated: 2024/05/07 15:29:13 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "ft_printf.h"
 
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
-# include "get_next_line/get_next_line.h"
-# include "mlx.h"
-# include <X11/keysym.h>
-
-typedef struct	s_mlx_data
+int	ft_putstr_pf(char *str)
 {
-	void	*mlx_ptr;
-	void	*mlx_window;
-}			t_mlx_data;
+	int	count;
 
-struct	s_map
-{
-	int		x_max;
-	int		y_max;
-	int		p_num;
-	int		e_num;
-	bool	if_c;
-	bool	wall_around;
-	char	**map;
-};
-
-#endif
+	count = 0;
+	if (str == NULL)
+		return (write(1, "(null)", 6));
+	while (*str)
+	{
+		ft_putchar_pf((int)*str);
+		count++;
+		str++;
+	}
+	return (count);
+}

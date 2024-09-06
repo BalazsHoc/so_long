@@ -47,7 +47,8 @@ static char	**ft_malloc_cpy(char **new, const char *s, char det)
 	i = -1;
 	while (s[++i])
 	{
-		if ((i == 0 && !is_det(s[i], det)) || (!is_det(s[i], det) && is_det(s[i - 1], det)))
+		if ((i == 0 && !is_det(s[i], det))
+			|| (!is_det(s[i], det) && is_det(s[i - 1], det)))
 		{
 			j = 0;
 			while (s[i + j] && !is_det(s[i + j], det))

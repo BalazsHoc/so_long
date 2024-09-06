@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putnbr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 10:38:43 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/09/06 10:38:45 by bhocsak          ###   ########.fr       */
+/*   Created: 2024/05/01 16:52:14 by bhocsak           #+#    #+#             */
+/*   Updated: 2024/06/12 17:37:18 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "ft_printf.h"
 
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
-# include "get_next_line/get_next_line.h"
-# include "mlx.h"
-# include <X11/keysym.h>
-
-typedef struct	s_mlx_data
+int	ft_putnbr_pf(int n)
 {
-	void	*mlx_ptr;
-	void	*mlx_window;
-}			t_mlx_data;
+	int		count;
+	long	nmr;
 
-struct	s_map
-{
-	int		x_max;
-	int		y_max;
-	int		p_num;
-	int		e_num;
-	bool	if_c;
-	bool	wall_around;
-	char	**map;
-};
-
-#endif
+	count = 1;
+	nmr = n;
+	if (nmr < 0)
+	{
+		count += ft_putchar_pf('-');
+		nmr *= -1;
+	}
+	if (nmr >= 10)
+		count += ft_putnbr_pf(nmr / 10);
+	ft_putchar_pf(nmr % 10 + '0');
+	return (count);
+}

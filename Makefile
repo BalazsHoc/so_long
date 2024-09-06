@@ -12,47 +12,47 @@
 
 NAME = so_long
 
+GET_NEXT_LINE_PATH = get_next_line/
+GET_NEXT_LINE = $(GET_NEXT_LINE_PATH)get_next_line.a
+
 FT_PRINTF_PATH = ft_printf/
-FT_PRINTF = $(FT_PRINTF_PATH)/libftprintf.a
+FT_PRINTF = $(FT_PRINTF_PATH)libftprintf.a
 
 LIBFT_PATH = libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
-MLX_PATH = minilibx-linux/
-MLX = $(MLX_PATH)libmlx.a
-
-MLX_FLAGS = S = -Lmlx -lmlx -framework OpenGL -framework App;
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
+MLXFLAGS = -lmlx -lXext -lX11 -lm
 
-SRCS =
+SRCS = so_long.c mlx.c
 
 OBJ = $(SRCS:.c=.o)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -Imlx -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(MLX) -o $(NAME)
+$(NAME): systems $(OBJ)
+	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
 
 systems:
 	@make -C $(LIBFT_PATH) all
 	@make -C $(FT_PRINTF_PATH) all
-	@make -C $(MLX_PATH) all
+	@make -C $(GET_NEXT_LINE_PATH) all
 
 all: systems $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean
 	@make -C $(FT_PRINTF_PATH) clean
-	@make -C $(MLX_PATH) clean
+	@make -C $(GET_NEXT_LINE_PATH) clean
 	rm -f $(OBJ)
 
 fclean: clean
 	@make -C $(LIBFT_PATH) fclean
 	@make -C $(FT_PRINTF_PATH) fclean
-	@make -C $(MLX_PATH) fclean
+	@make -C $(GET_NEXT_LINE_PATH) fclean
 	rm -f $(NAME)
 
 re: fclean all

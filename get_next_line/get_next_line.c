@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-void	*gnl_calloc(size_t nmemb, size_t size)
+char	*gnl_calloc(size_t nmemb, size_t size)
 {
-	void	*buffer;
+	char	*buffer;
 	size_t	i;
 	size_t	len;
 
@@ -24,12 +24,12 @@ void	*gnl_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	if (size > SIZE_MAX / nmemb)
 		return (NULL);
-	buffer = (void *)malloc(len);
+	buffer = malloc(len);
 	if (!buffer)
 		return (NULL);
 	while (i < len)
 	{
-		((char *)buffer)[i] = '\0';
+		buffer[i] = '\0';
 		i++;
 	}
 	return (buffer);
@@ -103,12 +103,12 @@ char	*gnl_reading(int fd, char *static_buf)
 	return (static_buf);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, bool flag)
 {
 	static char	*buf;
 	char		*output;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || flag == 1)
 		return (gnl_free(&buf), NULL);
 	buf = gnl_reading(fd, buf);
 	if (!buf)
@@ -119,6 +119,8 @@ char	*get_next_line(int fd)
 	if (gnl_newline(buf) == 1)
 	{
 		buf = gnl_fromnl(buf);
+		if (!buf)
+			return (gnl_free(&output), NULL);
 		return (output);
 	}
 	return (gnl_free(&buf), output);
