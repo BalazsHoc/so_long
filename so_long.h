@@ -36,4 +36,11 @@ struct	s_map
 	char	**map;
 };
 
+char	**sl_reading(char **argv);
+char	**taking_map(char **map, char *line, int num_lines, int fd);
+void	dbl_ptr_free(char **map);
+
+bool	is_rectangular(char **map);
+bool	is_wall_around(char **map);
+
 #endif

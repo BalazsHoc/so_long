@@ -26,7 +26,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 MLXFLAGS = -lmlx -lXext -lX11 -lm
 
-SRCS = so_long.c mlx.c
+SRCS = so_long.c mlx.c checks.c
 
 OBJ = $(SRCS:.c=.o)
 
