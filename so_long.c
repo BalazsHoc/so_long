@@ -109,9 +109,9 @@ int	main(int argc, char **argv)
 			dbl_ptr_free(map.map), 1);
 	map.x = give_x(map);
 	map.y = give_y(map);
+	write_map_out(map.map);
 	if (!map_size(map))
 		return (ft_printf("Wrong mapsize\n"), dbl_ptr_free(map.map), 1);
-	write_map_out(map.map);
 	if (!is_wall_around(map))
 		return (ft_printf("Map must be surrounded by walls\n"),
 			dbl_ptr_free(map.map), 1);

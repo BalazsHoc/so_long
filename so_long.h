@@ -49,4 +49,6 @@ int		num_colum(char **map);
 int		give_x(struct s_map map);
 int		give_y(struct s_map map);
 
+//	0cep.c
+
 #endif
