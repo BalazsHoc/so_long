@@ -12,6 +12,23 @@
 
 #include "so_long.h"
 
+static bool	middle_lines(struct s_map map, int i, int j)
+{
+	if (i != 0 && i != map.y)
+	{
+		while (j <= map.x)
+		{
+			if (j == 0 || j == map.x)
+			{
+				if (map.map[i][j] != '1')
+					return (0);
+			}
+			j++;
+		}
+	}
+	return (1);
+}
+
 bool	is_rectangular(char **map)
 {
 	size_t	len;
@@ -41,12 +58,12 @@ bool	is_wall_around(struct s_map map)
 	int	j;
 
 	i = 0;
-	while (i <= map.y_max)
+	while (i <= map.y)
 	{
 		j = 0;
-		if (i == 0 || i == map.y_max)
+		if (i == 0 || i == map.y)
 		{
-			while (j <= map.x_max)
+			while (j <= map.x)
 			{
 				if (map.map[i][j] != '1')
 					return (0);
@@ -54,18 +71,8 @@ bool	is_wall_around(struct s_map map)
 			}
 		}
 		j = 0;
-		if (i != 0 && i != map.y_max)
-		{
-			while (j <= map.x_max)
-			{
-				if (j == 0 || j == map.x_max)
-				{
-					if (map.map[i][j] != '1')
-						return (0);
-				}
-				j++;
-			}
-		}
+		if (!middle_lines(map, i, j))
+			return (0);
 		i++;
 	}
 	return (1);
@@ -73,20 +80,19 @@ bool	is_wall_around(struct s_map map)
 
 bool	map_size(struct s_map map)
 {
-	map.x_max = 0;
-	map.y_max = 0;
-
-	if (!map.map[map.y_max][map.x_max])
+	map.x = 0;
+	map.y = 0;
+	if (!map.map[map.y][map.x])
 		return (0);
-	while (map.map[0][map.x_max])
-		map.x_max++;
-	map.x_max--;
-	while (map.y_max < num_colum(map.map))
-		map.y_max++;
-	if ((map.y_max > 2 && map.x_max > 4) || (map.y_max > 4 && map.x_max > 2))
+	while (map.map[0][map.x])
+		map.x++;
+	map.x--;
+	while (map.y < num_colum(map.map))
+		map.y++;
+	if ((map.y > 2 && map.x > 4) || (map.y > 4 && map.x > 2))
 	{
-		if ((map.y_max < 9 && map.x_max < 16)
-			|| (map.y_max < 16 && map.x_max < 9))
+		if ((map.y < 9 && map.x < 16)
+			|| (map.y < 16 && map.x < 9))
 			return (1);
 	}
 	return (0);

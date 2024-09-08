@@ -24,14 +24,14 @@ int	num_colum(char **map)
 
 int	give_x(struct s_map map)
 {
-	map.x_max = ft_strlen(map.map[0]) - 2;
-	return (map.x_max);
+	map.x = ft_strlen(map.map[0]) - 2;
+	return (map.x);
 }
 
 int	give_y(struct s_map map)
 {
-	while (map.map[map.y_max])
-		map.y_max++;
-	map.y_max--;
-	return (map.y_max);
+	while (map.map[map.y])
+		map.y++;
+	map.y--;
+	return (map.y);
 }

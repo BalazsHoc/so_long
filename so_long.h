@@ -27,13 +27,10 @@ typedef struct s_mlx_data
 
 struct	s_map
 {
-	int		x_max;
-	int		y_max;
-	int		p_num;
-	int		e_num;
-	bool	if_c;
-	bool	wall_around;
 	char	**map;
+	int		x;
+	int		y;
+	int		collectable;
 };
 
 //	so_long.c
