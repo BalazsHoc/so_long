@@ -115,6 +115,8 @@ int	main(int argc, char **argv)
 	if (!is_wall_around(map))
 		return (ft_printf("Map must be surrounded by walls\n"),
 			dbl_ptr_free(map.map), 1);
+	if (!blocks(map))
+		return (dbl_ptr_free(map.map), 1);
 
 	dbl_ptr_free(map.map);
 	return (0);

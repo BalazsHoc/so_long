@@ -54,6 +54,7 @@ bool	is_wall_around(struct s_map map)
 	}
 	return (1);
 }
+
 bool	is_rectangular(char **map)
 {
 	size_t	len;
