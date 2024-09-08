@@ -2,7 +2,7 @@
 
 int	handle_input(int key, t_mlx_data *data)
 {
-	if  (key == XK_Escape)
+	if (key == XK_Escape)
 	{
 		printf("The %d kes (ESC) has been pressed\n\n", key);
 		mlx_destroy_window(data->mlx_ptr, data->mlx_window);

@@ -34,7 +34,7 @@ OBJ = $(SRCS:.c=.o)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): systems $(OBJ)
-	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
 
 systems:
 	@make -C $(LIBFT_PATH) all

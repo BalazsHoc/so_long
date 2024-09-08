@@ -14,15 +14,15 @@
 
 void	dbl_ptr_free(char **map)
 {
-	int i = 0;
+	int	i;
 
 	if (!map)
-		return;
+		return ;
+	i = 0;
 	while (map[i])
-	{
-		free(map[i]);
 		i++;
-	}
+	while (i > 0)
+		free(map[--i]);
 	free(map);
 }
 
@@ -33,7 +33,7 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 
 	temp = malloc(sizeof(char *) * (num_lines + 1));
 	if (!temp)
-		return (dbl_ptr_free(map), NULL);
+		return (get_next_line(fd, 1), gnl_free(&line), dbl_ptr_free(map), NULL);
 	j = 0;
 	while (j < num_lines - 1)
 	{
@@ -42,13 +42,10 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	}
 	temp[j] = ft_strdup(line);
 	if (!temp[j])
-	{
-		while(j > 0)
-			free(temp[--j]);
-		free(temp);
-		return (get_next_line(fd, 1), dbl_ptr_free(map), NULL);
-	}
-	temp[++j] = NULL;
+		return (get_next_line(fd, 1), gnl_free(&line),
+			dbl_ptr_free(temp), dbl_ptr_free(map), NULL);
+	j++;
+	temp[j] = NULL;
 	if (map)
 		free(map);
 	return (temp);
@@ -56,29 +53,29 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 
 char	**sl_reading(char **argv)
 {
-	char	**map = NULL;
+	char	**map;
 	char	*line;
 	int		fd;
 	int		num_lines;
+	bool	flag;
 
+	flag = 0;
 	map = NULL;
 	num_lines = 1;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (close(fd), NULL);
-	line = get_next_line(fd, 0);
-	if (!line)
-		return (close(fd), NULL);
+	line = get_next_line(fd, flag);
 	while (line)
 	{
 		map = taking_map(map, line, num_lines, fd);
 		if (!map)
-			return (get_next_line(fd, 1), gnl_free(&line), close(fd), NULL);
+			return (close(fd), NULL);
 		num_lines++;
 		free(line);
-		line = get_next_line(fd, 0);
+		line = get_next_line(fd, flag);
 	}
-	return (gnl_free(&line), close(fd), map);
+	return (get_next_line(fd, 1), gnl_free(&line), close(fd), map);
 }
 
 int	main(int argc, char **argv)
@@ -91,9 +88,11 @@ int	main(int argc, char **argv)
 	if (!map.map)
 		return (ft_printf("Invalid map\n"), 1);
 	if (is_rectangular(map.map) == 0)
-		return (ft_printf("Map must be rectangular\n"), dbl_ptr_free(map.map), 1);
+		return (ft_printf("Map must be rectangular\n"),
+			dbl_ptr_free(map.map), 1);
 	if (!is_wall_around(map.map))
-		return (ft_printf("Map must be surrounded by walls\n"), dbl_ptr_free(map.map), 1);
+		return (ft_printf("Map must be surrounded by walls\n"),
+			dbl_ptr_free(map.map), 1);
 
 	dbl_ptr_free(map.map);
 	return (0);

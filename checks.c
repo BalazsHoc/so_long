@@ -48,7 +48,7 @@ bool	is_wall_around(char **map)
 		ft_printf("Penis\n");
 		while (i != 0 && !map[i + 1] && map[i][j])
 		{
-			if ((j = 0 || !map[i][j + 2]) && map[i][j] != '1')
+			if ((j == 0 || !map[i][j + 2]) && map[i][j] != '1')
 				return (0);
 			j++;
 		}
