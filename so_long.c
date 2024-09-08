@@ -48,16 +48,18 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	char	**temp;
 	int		j;
 
+	(void)line;
+	(void)fd;
 	temp = malloc(sizeof(char *) * (num_lines + 1));
 	if (!temp)
-		return (get_next_line(fd, 1), gnl_free(&line), dbl_ptr_free(map), NULL);
+		return (dbl_ptr_free(map), NULL);
 	j = 0;
 	while (j < num_lines - 1)
 	{
 		temp[j] = map[j];
 		j++;
 	}
-	temp[j] = ft_strdup(line);
+	temp[j] = ft_strdup(line); //its failing
 	if (!temp[j])
 		return (get_next_line(fd, 1), gnl_free(&line),
 			dbl_ptr_free(temp), dbl_ptr_free(map), NULL);
@@ -87,7 +89,7 @@ char	**sl_reading(char **argv)
 	{
 		map = taking_map(map, line, num_lines, fd);
 		if (!map)
-			return (close(fd), NULL);
+			return (get_next_line(fd, 1), gnl_free(&line), close(fd), NULL);
 		num_lines++;
 		free(line);
 		line = get_next_line(fd, flag);

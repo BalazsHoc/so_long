@@ -52,7 +52,7 @@ int		give_y(struct s_map map);
 //	0cep.c
 bool	blocks(struct s_map map);
 int		is_collectable(struct s_map map);
+bool	cep01(struct s_map map);
 bool	pe(struct s_map map, char pe);
-
 
 #endif

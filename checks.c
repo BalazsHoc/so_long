@@ -78,7 +78,6 @@ bool	is_rectangular(char **map)
 	return (1);
 }
 
-
 bool	map_size(struct s_map map)
 {
 	map.x = 0;
