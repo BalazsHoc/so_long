@@ -26,12 +26,12 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 MLXFLAGS = -lmlx -lXext -lX11 -lm
 
-SRCS = so_long.c mlx.c checks.c
+SRCS = so_long.c mlx.c checks.c utils_functions.c
 
 OBJ = $(SRCS:.c=.o)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): systems $(OBJ)
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)

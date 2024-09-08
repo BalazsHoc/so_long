@@ -103,7 +103,7 @@ char	*gnl_reading(int fd, char *static_buf)
 	return (static_buf);
 }
 
-char	*get_next_line(int fd, bool flag)
+char	*get_next_line(int fd, int flag)
 {
 	static char	*buf;
 	char		*output;

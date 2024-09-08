@@ -12,6 +12,23 @@
 
 #include "so_long.h"
 
+void	write_map_out(char **map)
+{
+	int	i = 0;
+	int	j = 0;
+
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			write(1, &map[i][j], 1);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
 void	dbl_ptr_free(char **map)
 {
 	int	i;
@@ -87,10 +104,15 @@ int	main(int argc, char **argv)
 	map.map = sl_reading(argv);
 	if (!map.map)
 		return (ft_printf("Invalid map\n"), 1);
-	if (is_rectangular(map.map) == 0)
+	if (!is_rectangular(map.map))
 		return (ft_printf("Map must be rectangular\n"),
 			dbl_ptr_free(map.map), 1);
-	if (!is_wall_around(map.map))
+	map.x_max = give_x(map);
+	map.y_max = give_y(map);
+	if (!map_size(map))
+		return (ft_printf("Wrong mapsize\n"), dbl_ptr_free(map.map), 1);
+	write_map_out(map.map);
+	if (!is_wall_around(map))
 		return (ft_printf("Map must be surrounded by walls\n"),
 			dbl_ptr_free(map.map), 1);
 

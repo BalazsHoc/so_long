@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 12
+#  define BUFFER_SIZE 256
 # endif
 
 # include <unistd.h>
@@ -24,7 +24,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-char	*get_next_line(int fd, bool flag);
+char	*get_next_line(int fd, int flag);
 char	*gnl_reading(int fd, char *static_buf);
 char	*gnl_join_buffer(char *line, char *buffer);
 char	*gnl_join_free(char	*buffer, char *static_buf);
