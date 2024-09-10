@@ -21,9 +21,9 @@ bool	pe(struct s_map map, char pe)
 	i = 0;
 	j = 0;
 	count = 0;
-	while (i <= map.y)
+	while (i <= map.y_max)
 	{
-		while (j <= map.x)
+		while (j <= map.x_max)
 		{
 			if (map.map[i][j] == pe)
 				count++;
@@ -39,7 +39,7 @@ bool	pe(struct s_map map, char pe)
 	return (1);
 }
 
-int	is_collectable(struct s_map map)
+int	is_c(struct s_map map)
 {
 	int	i;
 	int	j;
@@ -48,9 +48,9 @@ int	is_collectable(struct s_map map)
 	i = 0;
 	j = 0;
 	count = 0;
-	while (i <= map.y)
+	while (i <= map.y_max)
 	{
-		while (j <= map.x)
+		while (j <= map.x_max)
 		{
 			if (map.map[i][j] == 'C')
 				count++;
@@ -69,9 +69,9 @@ bool	cep01(struct s_map map)
 
 	i = 0;
 	j = 0;
-	while (i <= map.y)
+	while (i <= map.y_max)
 	{
-		while (j <= map.x)
+		while (j <= map.x_max)
 		{
 			if (map.map[i][j] != 'C' && map.map[i][j] != 'E'
 				&& map.map[i][j] != 'P' && map.map[i][j] != '0'
@@ -91,9 +91,11 @@ bool	blocks(struct s_map map)
 		return (ft_printf("One PLAYER needed on the map\n"), 0);
 	if (!pe(map, 'E'))
 		return (ft_printf("One EXIT needed on the map\n"), 0);
-	if (!is_collectable(map))
+	if (!is_c(map))
 		return (ft_printf("Minimum is one COLLECTABLE item on the map\n"), 0);
 	if (!cep01(map))
 		return (ft_printf("Unexpected character in Map\n"), 0);
+	if (!is_peroute(map))
+		return (ft_printf("There is no rout between Player and Exit\n"), 0);
 	return (1);
 }

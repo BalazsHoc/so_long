@@ -108,8 +108,9 @@ int	main(int argc, char **argv)
 	if (!is_rectangular(map.map))
 		return (ft_printf("Map must be rectangular\n"),
 			dbl_ptr_free(map.map), 1);
-	map.x = give_x(map);
-	map.y = give_y(map);
+	map.x_max = give_x(map);
+	map.y_max = give_y(map);
+	map.c = is_c(map);
 	write_map_out(map.map);
 	if (!map_size(map))
 		return (ft_printf("Wrong mapsize\n"), dbl_ptr_free(map.map), 1);

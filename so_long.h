@@ -29,22 +29,16 @@ typedef struct s_mlx_data
 struct	s_map
 {
 	char	**map;
-	int		x;
-	int		y;
-	int		collectable;
+	int		x_max;
+	int		y_max;
+	int		c;
 };
 
-// typedef struct s_whole_m
-// {
-// 	char	*line;
-// 	bool	player;
-// 	bool	end;
-// 	bool	wall;
-// 	bool	is_c;
-// 	bool	empty;
-
-// 	struct s_map
-// }
+struct s_cord
+{
+	int	x;
+	int	y;
+};
 
 //	so_long.c
 char	**sl_reading(char **argv);
@@ -64,8 +58,19 @@ int		give_y(struct s_map map);
 
 //	0cep.c
 bool	blocks(struct s_map map);
-int		is_collectable(struct s_map map);
+int		is_c(struct s_map map);
 bool	cep01(struct s_map map);
 bool	pe(struct s_map map, char pe);
+
+// fincing_route.c
+bool	is_peroute(struct s_map map);
+bool	route(struct s_map map, struct s_cord p, struct s_cord e);
+int		its_y(struct s_map map, char pe);
+int		its_x(struct s_map map, char pe);
+
+// stepping.c
+void	step(struct s_map map, int cur_x, int cur_y);
+void	res_step(struct s_map map, int cur_x, int cur_y);
+int		step_col(struct s_map map, int cur_x, int cur_y);
 
 #endif
