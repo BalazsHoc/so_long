@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	write_map_out(char **map)
+void	write_map_out(char **map) // TAKE THAT OUT
 {
 	int	i = 0;
 	int	j = 0;
@@ -44,23 +44,6 @@ void	dbl_ptr_free(char **map)
 	map = NULL;
 }
 
-void	dbl_ptr_free_num(char **temp, int len)
-{
-	int	i;
-
-	if (!temp)
-		return ;
-	i = 0;
-	
-	while (i < len + 2)
-	{
-		free(temp[i]);
-		i++;
-	}
-	free(temp);
-	temp = NULL;
-}
-
 char	**taking_map(char **map, char *line, int num_lines, int fd)
 {
 	char	**temp;
@@ -76,10 +59,10 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 		temp[j] = map[j];
 		j++;
 	}
-	temp[j] = ft_strdup(line); //its failing
+	temp[j] = ft_strdup(line);
 	if (!temp[j])
 		return (get_next_line(fd, 1), gnl_free(&line),
-			dbl_ptr_free_num(temp, j), dbl_ptr_free(map), NULL);
+			dbl_ptr_free(temp), free(map), NULL);
 	temp[++j] = NULL;
 	if (map)
 		free(map);
