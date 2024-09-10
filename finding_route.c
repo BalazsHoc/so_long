@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   finding_route.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/10 19:38:45 by bhocsak           #+#    #+#             */
+/*   Updated: 2024/09/10 19:38:47 by bhocsak          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	its_x(struct s_map map, char pe)
@@ -52,7 +64,6 @@ bool	route(struct s_map map, struct s_cord p, struct s_cord e)
 		return (0);
 	res_step(map, p.x, p.y);
 	c = step_col(map, p.x, p.y);
-	ft_printf("all c: %d | c found: %d\n", map.c, c);
 	if (c != map.c)
 	{
 		dbl_ptr_free(map.map);
@@ -72,10 +83,6 @@ bool	is_peroute(struct s_map map)
 	p.y = its_y(map, 'P');
 	e.x = its_x(map, 'E');
 	e.y = its_y(map, 'E');
-
-	ft_printf("\ny_max: %d | x_max: %d", map.y_max, map.x_max);
-	ft_printf("P[%d][%d]\n", p.y, p.x);
-	ft_printf("E[%d][%d]\n", e.y, e.x);
 	if (!route(map, p, e))
 		return (0);
 	return (1);
