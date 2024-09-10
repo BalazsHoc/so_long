@@ -14,21 +14,20 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 128
+#  define BUFFER_SIZE 12
 # endif
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>
-# include <fcntl.h>
 # include <stdbool.h>
 
-char	*get_next_line(int fd, int flag);
-char	*gnl_reading(int fd, char *static_buf);
+char	*get_next_line(int fd, bool flag);
+char	*reading(int fd, char *static_buf);
 char	*gnl_join_buffer(char *line, char *buffer);
 char	*gnl_join_free(char	*buffer, char *static_buf);
-char	*gnl_calloc(size_t nmemb, size_t size);
+void	*gnl_calloc(size_t nmemb, size_t size);
 
 char	*gnl_fromnl(char *str);
 char	*gnl_strcpy(char *str);

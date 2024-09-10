@@ -18,6 +18,7 @@
 # include "get_next_line/get_next_line.h"
 # include "mlx.h"
 # include <X11/keysym.h>
+# include <fcntl.h>
 
 typedef struct s_mlx_data
 {
@@ -32,6 +33,18 @@ struct	s_map
 	int		y;
 	int		collectable;
 };
+
+// typedef struct s_whole_m
+// {
+// 	char	*line;
+// 	bool	player;
+// 	bool	end;
+// 	bool	wall;
+// 	bool	is_c;
+// 	bool	empty;
+
+// 	struct s_map
+// }
 
 //	so_long.c
 char	**sl_reading(char **argv);

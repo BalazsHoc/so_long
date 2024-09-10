@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-char	*gnl_calloc(size_t nmemb, size_t size)
+void	*gnl_calloc(size_t nmemb, size_t size)
 {
-	char	*buffer;
+	void	*buffer;
 	size_t	i;
 	size_t	len;
 
@@ -24,12 +24,12 @@ char	*gnl_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	if (size > SIZE_MAX / nmemb)
 		return (NULL);
-	buffer = malloc(len);
+	buffer = (void *)malloc(len);
 	if (!buffer)
 		return (NULL);
 	while (i < len)
 	{
-		buffer[i] = '\0';
+		((char *)buffer)[i] = '\0';
 		i++;
 	}
 	return (buffer);
@@ -75,7 +75,7 @@ char	*gnl_join_buffer(char *line, char *buffer)
 	return (joined);
 }
 
-char	*gnl_reading(int fd, char *static_buf)
+char	*reading(int fd, char *static_buf)
 {
 	char	*buffer;
 	ssize_t	return_of_read;
@@ -103,14 +103,14 @@ char	*gnl_reading(int fd, char *static_buf)
 	return (static_buf);
 }
 
-char	*get_next_line(int fd, int flag)
+char	*get_next_line(int fd, bool flag)
 {
 	static char	*buf;
 	char		*output;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || flag == 1)
 		return (gnl_free(&buf), NULL);
-	buf = gnl_reading(fd, buf);
+	buf = reading(fd, buf);
 	if (!buf)
 		return (NULL);
 	output = gnl_strcpy(buf);
@@ -119,8 +119,6 @@ char	*get_next_line(int fd, int flag)
 	if (gnl_newline(buf) == 1)
 	{
 		buf = gnl_fromnl(buf);
-		if (!buf)
-			return (gnl_free(&output), NULL);
 		return (output);
 	}
 	return (gnl_free(&buf), output);
@@ -131,16 +129,21 @@ char	*get_next_line(int fd, int flag)
 // int main()
 // {
 // 	int fd = open("test.txt", O_RDONLY);
-// 	char *line = get_next_line(fd);
+// 	char *line = get_next_line(fd, 0);
 
-// 	//printf("line: x%sx", line);
+// 	printf("line: x%sx", line);
 // 	while (line != NULL)
 // 	{
 // 		printf("line: x%sx", line);
 // 		free(line);
-// 		line = get_next_line(-1);
+// 		line = get_next_line(fd, 0);
+// 		printf("line: x%sx", line);
+// 		free(line);
+// 		line = get_next_line(fd, 0);
+// 		printf("line: x%sx", line);
+// 		// get_next_line(fd, 1);
 // 	}
-// 	//free(line);
+// 	free(line);
 // 	close(fd);
 // 	return 0;
 // }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cep01.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/10 10:33:15 by bhocsak           #+#    #+#             */
+/*   Updated: 2024/09/10 10:33:23 by bhocsak          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 bool	pe(struct s_map map, char pe)
@@ -76,11 +88,11 @@ bool	cep01(struct s_map map)
 bool	blocks(struct s_map map)
 {
 	if (!pe(map, 'P'))
-		return (ft_printf("There should be one Player\n"), 0);
+		return (ft_printf("One PLAYER needed on the map\n"), 0);
 	if (!pe(map, 'E'))
-		return (ft_printf("There should be one Exit\n"), 0);
+		return (ft_printf("One EXIT needed on the map\n"), 0);
 	if (!is_collectable(map))
-		return (ft_printf("Minimum is one Collectable item\n"), 0);
+		return (ft_printf("Minimum is one COLLECTABLE item on the map\n"), 0);
 	if (!cep01(map))
 		return (ft_printf("Unexpected character in Map\n"), 0);
 	return (1);

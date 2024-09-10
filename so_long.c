@@ -41,6 +41,24 @@ void	dbl_ptr_free(char **map)
 	while (i > 0)
 		free(map[--i]);
 	free(map);
+	map = NULL;
+}
+
+void	dbl_ptr_free_num(char **temp, int len)
+{
+	int	i;
+
+	if (!temp)
+		return ;
+	i = 0;
+	
+	while (i < len + 2)
+	{
+		free(temp[i]);
+		i++;
+	}
+	free(temp);
+	temp = NULL;
 }
 
 char	**taking_map(char **map, char *line, int num_lines, int fd)
@@ -48,11 +66,10 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	char	**temp;
 	int		j;
 
-	(void)line;
-	(void)fd;
 	temp = malloc(sizeof(char *) * (num_lines + 1));
 	if (!temp)
-		return (dbl_ptr_free(map), NULL);
+		return (get_next_line(fd, 1), gnl_free(&line),
+			dbl_ptr_free(temp), dbl_ptr_free(map), NULL);
 	j = 0;
 	while (j < num_lines - 1)
 	{
@@ -62,9 +79,8 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	temp[j] = ft_strdup(line); //its failing
 	if (!temp[j])
 		return (get_next_line(fd, 1), gnl_free(&line),
-			dbl_ptr_free(temp), dbl_ptr_free(map), NULL);
-	j++;
-	temp[j] = NULL;
+			dbl_ptr_free_num(temp, j), dbl_ptr_free(map), NULL);
+	temp[++j] = NULL;
 	if (map)
 		free(map);
 	return (temp);
@@ -89,7 +105,7 @@ char	**sl_reading(char **argv)
 	{
 		map = taking_map(map, line, num_lines, fd);
 		if (!map)
-			return (get_next_line(fd, 1), gnl_free(&line), close(fd), NULL);
+			return (close(fd), NULL);
 		num_lines++;
 		free(line);
 		line = get_next_line(fd, flag);
