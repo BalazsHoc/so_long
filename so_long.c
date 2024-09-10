@@ -52,7 +52,7 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	temp = malloc(sizeof(char *) * (num_lines + 1));
 	if (!temp)
 		return (get_next_line(fd, 1), gnl_free(&line),
-			dbl_ptr_free(temp), dbl_ptr_free(map), NULL);
+			dbl_ptr_free(map), NULL);
 	j = 0;
 	while (j < num_lines - 1)
 	{
@@ -62,7 +62,7 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	temp[j] = ft_strdup(line);
 	if (!temp[j])
 		return (get_next_line(fd, 1), gnl_free(&line),
-			dbl_ptr_free(temp), free(map), NULL);
+			free(temp), dbl_ptr_free(map), NULL);
 	temp[++j] = NULL;
 	if (map)
 		free(map);
@@ -119,6 +119,5 @@ int	main(int argc, char **argv)
 	if (!blocks(map))
 		return (dbl_ptr_free(map.map), 1);
 
-	dbl_ptr_free(map.map);
-	return (0);
+	return (dbl_ptr_free(map.map), 0);
 }
