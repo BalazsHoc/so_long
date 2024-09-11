@@ -14,7 +14,7 @@ int	handle_input(int key, t_mlx_data *data)
 	return (0);
 }
 
-int	mlx_my(void)
+int	do_mlx(void)
 {
 	t_mlx_data	data;
 

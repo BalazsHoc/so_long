@@ -57,7 +57,7 @@ int		give_x(struct s_map map);
 int		give_y(struct s_map map);
 
 //	0cep.c
-bool	blocks(struct s_map map);
+bool	exist_reachable(struct s_map map);
 int		is_c(struct s_map map);
 bool	cep01(struct s_map map);
 bool	pe(struct s_map map, char pe);
@@ -72,5 +72,9 @@ int		its_x(struct s_map map, char pe);
 void	step(struct s_map map, int cur_x, int cur_y);
 void	res_step(struct s_map map, int cur_x, int cur_y);
 int		step_col(struct s_map map, int cur_x, int cur_y);
+
+// mlx.c
+int		do_mlx(void);
+int		handle_input(int key, t_mlx_data *data);
 
 #endif

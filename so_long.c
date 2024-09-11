@@ -101,24 +101,25 @@ int	main(int argc, char **argv)
 	struct s_map	map;
 
 	if (argc != 2)
-		return (ft_printf("No or too much argument\n"), 1);
+		return (write(2, "Error, no or too much argument\n", 31), 1);
 	map.map = sl_reading(argv);
 	if (!map.map)
-		return (ft_printf("Invalid map\n"), 1);
+		return (write(2, "Error, malloc failed\n", 21), 1);
 	if (!is_rectangular(map.map))
-		return (ft_printf("Map must be rectangular\n"),
+		return (write(2, "Error, map must be rectangular\n", 31),
 			dbl_ptr_free(map.map), 1);
 	map.x_max = give_x(map);
 	map.y_max = give_y(map);
 	map.c = is_c(map);
-	write_map_out(map.map);
 	if (!map_size(map))
-		return (ft_printf("Wrong mapsize\n"), dbl_ptr_free(map.map), 1);
-	if (!is_wall_around(map))
-		return (ft_printf("Map must be surrounded by walls\n"),
+		return (write(2, "Error, wrong mapsize\n", 21),
 			dbl_ptr_free(map.map), 1);
-	if (!blocks(map))
+	if (!is_wall_around(map))
+		return (write(2, "Error, map must be surrounded by walls\n", 39),
+			dbl_ptr_free(map.map), 1);
+	if (!exist_reachable(map))
 		return (dbl_ptr_free(map.map), 1);
-
+	write_map_out(map.map);
+	// do_mlx();
 	return (dbl_ptr_free(map.map), 0);
 }

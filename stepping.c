@@ -16,7 +16,7 @@ int	step_col(struct s_map map, int cur_x, int cur_y)
 {
 	if (cur_x == map.x_max || cur_y == map.y_max)
 		return (0);
-	if (map.map[cur_y][cur_x] == 'c' || map.map[cur_y][cur_x] == 'e'
+	if (map.map[cur_y][cur_x] == 'c' || map.map[cur_y][cur_x] == 'E'
 		|| map.map[cur_y][cur_x] == 'p' || map.map[cur_y][cur_x] == 'o'
 			|| map.map[cur_y][cur_x] == '1')
 		return (0);
@@ -28,8 +28,7 @@ int	step_col(struct s_map map, int cur_x, int cur_y)
 			+ step_col(map, cur_x - 1, cur_y)
 			+ step_col(map, cur_x, cur_y - 1));
 	}
-	if (map.map[cur_y][cur_x] == 'C' || map.map[cur_y][cur_x] == 'E'
-		|| map.map[cur_y][cur_x] == 'P')
+	if (map.map[cur_y][cur_x] == 'C' || map.map[cur_y][cur_x] == 'P')
 		map.map[cur_y][cur_x] = ft_tolower(map.map[cur_y][cur_x]);
 	if (map.map[cur_y][cur_x] == '0')
 		map.map[cur_y][cur_x] = 'o';

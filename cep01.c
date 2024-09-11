@@ -85,17 +85,17 @@ bool	cep01(struct s_map map)
 	return (1);
 }
 
-bool	blocks(struct s_map map)
+bool	exist_reachable(struct s_map map)
 {
 	if (!pe(map, 'P'))
-		return (ft_printf("One PLAYER needed on the map\n"), 0);
+		return (write(2, "Error, one PLAYER needed on the map\n", 36), 0);
 	if (!pe(map, 'E'))
-		return (ft_printf("One EXIT needed on the map\n"), 0);
+		return (write(2, "Error, one EXIT needed on the map\n", 34), 0);
 	if (!is_c(map))
-		return (ft_printf("Minimum is one COLLECTABLE item on the map\n"), 0);
+		return (write(2, "Error, no COLLECTABLE item on the map\n", 38), 0);
 	if (!cep01(map))
-		return (ft_printf("Unexpected character in Map\n"), 0);
+		return (write(2, "Error, unexpected character in Map\n", 35), 0);
 	if (!is_peroute(map))
-		return (ft_printf("There is no rout between Player and Exit\n"), 0);
+		return (0);
 	return (1);
 }
