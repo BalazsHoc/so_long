@@ -24,6 +24,7 @@ typedef struct s_mlx_data
 {
 	void	*mlx_ptr;
 	void	*mlx_window;
+	char	**map;
 }			t_mlx_data;
 
 struct	s_map
@@ -74,7 +75,7 @@ void	res_step(struct s_map map, int cur_x, int cur_y);
 int		step_col(struct s_map map, int cur_x, int cur_y);
 
 // mlx.c
-int		do_mlx(void);
-int		handle_input(int key, t_mlx_data *data);
+int		do_mlx(struct s_map map);
+int		handle_keyboard(int key, t_mlx_data *data);
 
 #endif

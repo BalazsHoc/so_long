@@ -120,6 +120,7 @@ int	main(int argc, char **argv)
 	if (!exist_reachable(map))
 		return (dbl_ptr_free(map.map), 1);
 	write_map_out(map.map);
-	// do_mlx();
-	return (dbl_ptr_free(map.map), 0);
+	ft_printf("\n");
+	do_mlx(map);
+	return (0);
 }
