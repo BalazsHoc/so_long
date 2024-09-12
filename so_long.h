@@ -13,6 +13,8 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+#  define SIZE 50
+
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
@@ -20,12 +22,12 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 
-typedef struct s_mlx_data
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
-	void	*mlx_window;
+	void	*window;
 	char	**map;
-}			t_mlx_data;
+}			t_mlx;
 
 struct	s_map
 {
@@ -76,6 +78,9 @@ int		step_col(struct s_map map, int cur_x, int cur_y);
 
 // mlx.c
 int		do_mlx(struct s_map map);
-int		handle_keyboard(int key, t_mlx_data *data);
+int		handle_keyboard(int key, t_mlx *data);
+int		exit_clean_way(t_mlx *data);
+void	fill_window(t_mlx game, struct s_map map);
+int		put_imagines(t_mlx game, int x, int y);
 
 #endif
