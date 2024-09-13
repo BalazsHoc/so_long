@@ -12,6 +12,33 @@
 
 #include "so_long.h"
 
+bool	name_of_map(char *map_name)
+{
+	char	*str;
+	int		i;
+
+	i = 1;
+	str = ft_strchr(map_name, '/');
+	if (!str)
+	{
+		if (ft_strlen(map_name) < 5)
+			return (0);
+		if (ft_strncmp(map_name + ft_strlen(map_name) - 4, ".ber", 4))
+			return (0);
+	}
+	str = &map_name[ft_strlen(map_name) - i];
+	while (str[0] != '/')
+	{
+		str = &map_name[ft_strlen(map_name) - i];
+		i++;
+	}
+	if (ft_strlen(map_name) < 5)
+			return (0);
+		if (ft_strncmp(map_name + ft_strlen(map_name) - 4, ".ber", 4))
+			return (0);
+	return (1);
+}
+
 static bool	middle_lines(struct s_map map, char *str, int j)
 {
 	while (j <= map.x_max)
@@ -91,7 +118,7 @@ bool	map_size(struct s_map map)
 		map.y_max++;
 	if ((map.y_max > 2 && map.x_max > 4) || (map.y_max > 4 && map.x_max > 2))
 	{
-		if (map.y_max < 9 && map.x_max < 16)
+		if (map.y_max < 10 && map.x_max < 17)
 			return (1);
 	}
 	return (0);

@@ -27,14 +27,15 @@ CFLAGS = -Wall -Werror -Wextra -g
 MLXFLAGS = -lmlx -lXext -lX11 -lm
 
 SRCS =	so_long.c mlx.c checks.c utils_functions.c\
-		cep01.c finding_route.c stepping.c
+		cep01.c finding_route.c stepping.c mlx_cleaning.c\
+		mlx_keyhandler.c
 
 OBJ = $(SRCS:.c=.o)
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME): systems $(OBJ)
+$(NAME): $(OBJ) systems
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
 
 systems:

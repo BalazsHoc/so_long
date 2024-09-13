@@ -63,7 +63,8 @@ char	**taking_map(char **map, char *line, int num_lines, int fd)
 	if (!temp[j])
 		return (get_next_line(fd, 1), gnl_free(&line),
 			free(temp), dbl_ptr_free(map), NULL);
-	temp[++j] = NULL;
+	j++;
+	temp[j] = NULL;
 	if (map)
 		free(map);
 	return (temp);
@@ -102,9 +103,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (write(2, "Error, no or too much argument\n", 31), 1);
+	if (!name_of_map(argv[1]))
+		return (write(2, "Error, wrong mapname\n", 21), 1);
 	map.map = sl_reading(argv);
 	if (!map.map)
-		return (write(2, "Error, malloc failed\n", 21), 1);
+		return (write(2, "Error\n", 6), 1);
 	if (!is_rectangular(map.map))
 		return (write(2, "Error, map must be rectangular\n", 31),
 			dbl_ptr_free(map.map), 1);
@@ -119,8 +122,10 @@ int	main(int argc, char **argv)
 			dbl_ptr_free(map.map), 1);
 	if (!exist_reachable(map))
 		return (dbl_ptr_free(map.map), 1);
+
 	write_map_out(map.map);
 	ft_printf("\n");
+	
 	do_mlx(map);
 	return (0);
 }

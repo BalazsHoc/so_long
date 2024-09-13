@@ -27,6 +27,15 @@ typedef struct s_mlx
 	void	*mlx_ptr;
 	void	*window;
 	char	**map;
+
+	int		width;
+	int		heigth;
+
+	void	*collect;
+	void	*exit;
+	void	*empty;
+	void	*player;
+	void	*wall;
 }			t_mlx;
 
 struct	s_map
@@ -53,6 +62,7 @@ void	write_map_out(char **map);	// TAKE THAT OUT
 bool	is_rectangular(char **map);
 bool	is_wall_around(struct s_map map);
 bool	map_size(struct s_map map);
+bool	name_of_map(char *map_name);
 
 //	utils_functions.c
 int		num_colum(char **map);
@@ -78,9 +88,16 @@ int		step_col(struct s_map map, int cur_x, int cur_y);
 
 // mlx.c
 int		do_mlx(struct s_map map);
-int		handle_keyboard(int key, t_mlx *data);
-int		exit_clean_way(t_mlx *data);
-void	fill_window(t_mlx game, struct s_map map);
-int		put_imagines(t_mlx game, int x, int y);
+int		images_converter(t_mlx game);
+void	put_imagines(t_mlx game, int x, int y);
+
+// mlx_cleaning.c
+int		exit_clean_way(t_mlx *game);
+void	clean_images(t_mlx *game);
+
+// mlx_keyhandler.c
+int		handle_keyboard(int key, t_mlx *game);
+void	fill_window(t_mlx game);
+
 
 #endif
