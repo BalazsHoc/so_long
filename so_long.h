@@ -32,11 +32,16 @@ typedef struct s_mlx
 	int		heigth;
 	int		c_num;
 
+	int		p_x;
+	int		p_y;
+
 	void	*collect;
 	void	*exit;
 	void	*empty;
 	void	*player;
 	void	*wall;
+
+	int		steps;
 }			t_mlx;
 
 struct	s_map
@@ -57,7 +62,6 @@ struct s_cord
 char	**sl_reading(char **argv);
 char	**taking_map(char **map, char *line, int num_lines, int fd);
 void	dbl_ptr_free(char **map);
-void	write_map_out(char **map);	// TAKE THAT OUT
 
 //	checks.c
 bool	is_rectangular(char **map);
@@ -95,9 +99,17 @@ void	put_images(t_mlx *game, int x, int y);
 
 // mlx_cleaning.c
 int		exit_clean_way(t_mlx *game);
+int		exit_clean_way_won(t_mlx *game);
 
 // mlx_keyhandler.c
 int		handle_keyboard(int key, t_mlx *game);
+int		handle_click_x(t_mlx *game);
 void	fill_up_window(t_mlx *game);
+
+// wasd.c
+int		moving_w(t_mlx *game);
+int		moving_a(t_mlx *game);
+int		moving_s(t_mlx *game);
+int		moving_d(t_mlx *game);
 
 #endif

@@ -61,9 +61,12 @@ int	do_mlx(struct s_map map)
 	t_mlx	game;
 
 	game.map = map.map;
-	game.width = map.x_max;
-	game.heigth = map.y_max;
+	game.width = map.x_max + 1;
+	game.heigth = map.y_max + 1;
+	game.steps = 0;
 	game.c_num = map.c;
+	game.p_x = its_x(map, 'P');
+	game.p_y = its_y(map, 'P');
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
 		return (dbl_ptr_free(map.map), 1);
@@ -74,7 +77,7 @@ int	do_mlx(struct s_map map)
 			free(game.mlx_ptr), write(2, "Error\n", 6), 0);
 	images_converter(&game);
 	fill_up_window(&game);
-	mlx_hook(game.window, 17, 0, exit_clean_way, &game);
+	mlx_hook(game.window, 17, 0, handle_click_x, &game);
 	mlx_key_hook(game.window, handle_keyboard, &game);
 	mlx_loop(game.mlx_ptr);
 	return (exit_clean_way(&game), 1);

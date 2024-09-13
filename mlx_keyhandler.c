@@ -12,22 +12,28 @@
 
 #include "so_long.h"
 
+int	handle_click_x(t_mlx *game)
+{
+	write(2, "You failed\n", 11);
+	return (exit_clean_way(game));
+}
+
 int	handle_keyboard(int key, t_mlx *game)
 {
 	if (key == XK_Escape)
 	{
-		ft_printf("The %d kes (ESC) has been pressed\n\n", key);
+		write(2, "You failed\n", 11);
 		exit_clean_way(game);
 	}
 	(void)game;
 	if (key == XK_w)
-		ft_printf("w\n\n");
+		moving_w(game);
 	if (key == XK_a)
-		ft_printf("a\n\n");
+		moving_a(game);
 	if (key == XK_s)
-		ft_printf("s\n\n");
+		moving_s(game);
 	if (key == XK_d)
-		ft_printf("d\n\n");
+		moving_d(game);
 	return (0);
 }
 

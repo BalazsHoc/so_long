@@ -28,7 +28,7 @@ MLXFLAGS = -lmlx -lXext -lX11 -lm
 
 SRCS =	so_long.c mlx.c checks.c utils_functions.c\
 		cep01.c finding_route.c stepping.c mlx_cleaning.c\
-		mlx_keyhandler.c
+		mlx_keyhandler.c wasd.c
 
 OBJ = $(SRCS:.c=.o)
 

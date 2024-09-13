@@ -12,23 +12,6 @@
 
 #include "so_long.h"
 
-void	write_map_out(char **map) // TAKE THAT OUT
-{
-	int	i = 0;
-	int	j = 0;
-
-	while (map[i])
-	{
-		while (map[i][j])
-		{
-			write(1, &map[i][j], 1);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-}
-
 void	dbl_ptr_free(char **map)
 {
 	int	i;
