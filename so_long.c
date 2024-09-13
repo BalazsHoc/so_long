@@ -122,10 +122,6 @@ int	main(int argc, char **argv)
 			dbl_ptr_free(map.map), 1);
 	if (!exist_reachable(map))
 		return (dbl_ptr_free(map.map), 1);
-
-	write_map_out(map.map);
-	ft_printf("\n");
-	
 	do_mlx(map);
 	return (0);
 }

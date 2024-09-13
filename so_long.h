@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#  define SIZE 50
+# define SIZE 50
 
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
@@ -30,6 +30,7 @@ typedef struct s_mlx
 
 	int		width;
 	int		heigth;
+	int		c_num;
 
 	void	*collect;
 	void	*exit;
@@ -88,16 +89,15 @@ int		step_col(struct s_map map, int cur_x, int cur_y);
 
 // mlx.c
 int		do_mlx(struct s_map map);
-int		images_converter(t_mlx game);
-void	put_imagines(t_mlx game, int x, int y);
+void	convert(t_mlx *game, void **image_ptr, char *xpm_file_path);
+void	images_converter(t_mlx *game);
+void	put_images(t_mlx *game, int x, int y);
 
 // mlx_cleaning.c
 int		exit_clean_way(t_mlx *game);
-void	clean_images(t_mlx *game);
 
 // mlx_keyhandler.c
 int		handle_keyboard(int key, t_mlx *game);
-void	fill_window(t_mlx game);
-
+void	fill_up_window(t_mlx *game);
 
 #endif

@@ -33,9 +33,9 @@ bool	name_of_map(char *map_name)
 		i++;
 	}
 	if (ft_strlen(map_name) < 5)
-			return (0);
-		if (ft_strncmp(map_name + ft_strlen(map_name) - 4, ".ber", 4))
-			return (0);
+		return (0);
+	if (ft_strncmp(map_name + ft_strlen(map_name) - 4, ".ber", 4))
+		return (0);
 	return (1);
 }
 
