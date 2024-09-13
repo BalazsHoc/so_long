@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 		return (write(2, "Error, wrong mapname\n", 21), 1);
 	map.map = sl_reading(argv);
 	if (!map.map)
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error, map can not be opened\n", 29), 1);
 	if (!is_rectangular(map.map))
 		return (write(2, "Error, map must be rectangular\n", 31),
 			dbl_ptr_free(map.map), 1);

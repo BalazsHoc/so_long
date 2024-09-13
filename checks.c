@@ -118,7 +118,7 @@ bool	map_size(struct s_map map)
 		map.y_max++;
 	if ((map.y_max > 2 && map.x_max > 4) || (map.y_max > 4 && map.x_max > 2))
 	{
-		if (map.y_max < 10 && map.x_max < 17)
+		if (map.y_max < 17 && map.x_max < 31)
 			return (1);
 	}
 	return (0);
