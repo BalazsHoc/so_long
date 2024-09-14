@@ -106,5 +106,5 @@ int	main(int argc, char **argv)
 	if (!exist_reachable(map))
 		return (dbl_ptr_free(map.map), 1);
 	do_mlx(map);
-	return (0);
+	return (dbl_ptr_free(map.map), 0);
 }

@@ -23,7 +23,7 @@ LIBFT = $(LIBFT_PATH)libft.a
 
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 MLXFLAGS = -lmlx -lXext -lX11 -lm
 
 SRCS =	so_long.c mlx.c checks.c utils_functions.c\
