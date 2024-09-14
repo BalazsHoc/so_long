@@ -23,7 +23,7 @@ LIBFT = $(LIBFT_PATH)libft.a
 
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 MLXFLAGS = -lmlx -lXext -lX11 -lm
 
 SRCS =	so_long.c mlx.c checks.c utils_functions.c\
@@ -47,7 +47,7 @@ clean:
 	@make -C $(LIBFT_PATH) clean
 	@make -C $(FT_PRINTF_PATH) clean
 	@make -C $(GET_NEXT_LINE_PATH) clean
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
 	@make -C $(LIBFT_PATH) fclean

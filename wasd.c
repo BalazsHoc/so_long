@@ -29,7 +29,7 @@ int	moving_w(t_mlx *game)
 	game->p_y--;
 	fill_up_window(game);
 	game->steps++;
-	ft_printf("Steps: %d\n\n", game->steps);
+	ft_printf("Movements: %d\n\n", game->steps);
 	return (1);
 }
 
@@ -50,7 +50,7 @@ int	moving_a(t_mlx *game)
 	game->p_x--;
 	fill_up_window(game);
 	game->steps++;
-	ft_printf("Steps: %d\n\n", game->steps);
+	ft_printf("Movements: %d\n\n", game->steps);
 	return (1);
 }
 
@@ -71,7 +71,7 @@ int	moving_s(t_mlx *game)
 	game->p_y++;
 	fill_up_window(game);
 	game->steps++;
-	ft_printf("Steps: %d\n\n", game->steps);
+	ft_printf("Movements: %d\n\n", game->steps);
 	return (1);
 }
 
@@ -92,6 +92,6 @@ int	moving_d(t_mlx *game)
 	game->p_x++;
 	fill_up_window(game);
 	game->steps++;
-	ft_printf("Steps: %d\n\n", game->steps);
+	ft_printf("Movements: %d\n\n", game->steps);
 	return (1);
 }

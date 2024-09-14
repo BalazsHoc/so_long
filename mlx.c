@@ -40,7 +40,10 @@ void	images_converter(t_mlx *game)
 	convert(game, &game->wall, "images/1_50x50.xpm");
 	if (!game->collect || !game->exit || !game->empty
 		|| !game->player || !game->wall)
+	{
+		write(2, "Error, character(s) could not be opened\n", 40);
 		exit_clean_way(game);
+	}
 }
 
 void	convert(t_mlx *game, void **image_ptr, char *xpm_file_path)
@@ -50,7 +53,6 @@ void	convert(t_mlx *game, void **image_ptr, char *xpm_file_path)
 
 	width = SIZE;
 	height = SIZE;
-	(void)xpm_file_path;
 	*image_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			xpm_file_path, &width, &height);
 }
