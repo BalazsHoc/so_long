@@ -35,15 +35,13 @@ OBJ = $(SRCS:.c=.o)
 %.o : %.c
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ) systems
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
-
-systems:
+$(NAME): $(OBJ)
 	@make -C $(LIBFT_PATH) all
 	@make -C $(FT_PRINTF_PATH) all
 	@make -C $(GET_NEXT_LINE_PATH) all
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
 
-all: systems $(NAME)
+all: $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean
@@ -55,7 +53,7 @@ fclean: clean
 	@make -C $(LIBFT_PATH) fclean
 	@make -C $(FT_PRINTF_PATH) fclean
 	@make -C $(GET_NEXT_LINE_PATH) fclean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

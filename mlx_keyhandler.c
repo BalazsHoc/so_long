@@ -14,16 +14,16 @@
 
 int	handle_click_x(t_mlx *game)
 {
-	write(2, "You failed\n", 11);
-	return (exit_clean_way(game));
+	write(1, "You exit the program\n", 21);
+	return (exit_clean_way_won(game));
 }
 
 int	handle_keyboard(int key, t_mlx *game)
 {
 	if (key == XK_Escape)
 	{
-		write(2, "You failed\n", 11);
-		exit_clean_way(game);
+		write(1, "You exit the program\n", 21);
+		exit_clean_way_won(game);
 	}
 	(void)game;
 	if (key == XK_w)

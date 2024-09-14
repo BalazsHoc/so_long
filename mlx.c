@@ -38,6 +38,9 @@ void	images_converter(t_mlx *game)
 	convert(game, &game->empty, "images/0_50x50.xpm");
 	convert(game, &game->player, "images/p_50x50.xpm");
 	convert(game, &game->wall, "images/1_50x50.xpm");
+	if (!game->collect || !game->exit || !game->empty
+		|| !game->player || !game->wall)
+		exit_clean_way(game);
 }
 
 void	convert(t_mlx *game, void **image_ptr, char *xpm_file_path)
@@ -47,13 +50,9 @@ void	convert(t_mlx *game, void **image_ptr, char *xpm_file_path)
 
 	width = SIZE;
 	height = SIZE;
+	(void)xpm_file_path;
 	*image_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			xpm_file_path, &width, &height);
-	if (*image_ptr == NULL)
-	{
-		write(2, "Error\n", 6);
-		exit_clean_way(game);
-	}
 }
 
 int	do_mlx(struct s_map map)

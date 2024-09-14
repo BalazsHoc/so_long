@@ -66,7 +66,7 @@ char	**sl_reading(char **argv)
 	num_lines = 1;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (close(fd), NULL);
+		return (NULL);
 	line = get_next_line(fd, flag);
 	while (line)
 	{
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (write(2, "Error, no or too much argument\n", 31), 1);
 	if (!name_of_map(argv[1]))
-		return (write(2, "Error, wrong mapname\n", 21), 1);
+		return (write(2, "Error, map must be a .ber file\n", 31), 1);
 	map.map = sl_reading(argv);
 	if (!map.map)
 		return (write(2, "Error, map can not be opened\n", 29), 1);
