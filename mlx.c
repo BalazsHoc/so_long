@@ -73,7 +73,8 @@ int	do_mlx(struct s_map map)
 	game.mlx_ptr = NULL;
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
-		return (0);
+		return (write(2, "Error\n", 6), 0);
+	game.window = NULL;
 	game.window = mlx_new_window(game.mlx_ptr,
 			game.width * SIZE, game.heigth * SIZE, "so_long");
 	if (!game.window)

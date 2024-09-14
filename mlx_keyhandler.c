@@ -14,7 +14,7 @@
 
 int	handle_click_x(t_mlx *game)
 {
-	write(1, "You quit the program\n", 21);
+	write(1, "You quit the game\n", 18);
 	return (exit_clean_way_won(game));
 }
 
@@ -22,7 +22,7 @@ int	handle_keyboard(int key, t_mlx *game)
 {
 	if (key == XK_Escape)
 	{
-		write(1, "You quit the program\n", 21);
+		write(1, "You quit the game\n", 18);
 		exit_clean_way_won(game);
 	}
 	(void)game;

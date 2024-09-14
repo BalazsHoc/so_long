@@ -94,7 +94,7 @@ bool	exist_reachable(struct s_map map)
 	if (!is_c(map))
 		return (write(2, "Error, no COLLECTABLE item on the map\n", 38), 0);
 	if (!cep01(map))
-		return (write(2, "Error, unexpected character in Map\n", 35), 0);
+		return (write(2, "Error, unexpected character in map\n", 35), 0);
 	if (!is_peroute(map))
 		return (0);
 	return (1);

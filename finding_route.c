@@ -61,11 +61,11 @@ bool	route(struct s_map map, struct s_cord p, struct s_cord e)
 	c = 0;
 	step(map, p.x, p.y);
 	if (map.map[e.y][e.x] != 'e')
-		return (write(2, "Error, no route between Player and Exit\n", 40), 0);
+		return (write(2, "Error, no route between PLAYER and EXIT\n", 40), 0);
 	res_step(map, p.x, p.y);
 	c = step_col(map, p.x, p.y);
 	if (c != map.c)
-		return (write(2, "Error, Collectable item blocked\n", 32), 0);
+		return (write(2, "Error, COLLECTABLE item blocked\n", 32), 0);
 	res_step(map, p.x, p.y);
 	return (1);
 }
