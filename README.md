@@ -1,7 +1,7 @@
 # About
- 
+https://github.com/user-attachments/assets/8b72029b-d46f-45c0-8728-2fe91e703773
 ## Introduction
-In this project, we'll code a simple 2D game to get familiar with the mlx library and UI in general. In my case, it will be Pac-Man.
+In this project, we'll code a simple 2D game to get familiar with the mlx library and UI in general. In my case, it will be Mario.
 
 ## Game Rules
 The game we choose must follow a set of rules. The executable ``so_long`` will receive a map as the only argument, and this map will have a ``.ber`` filetype.
