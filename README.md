@@ -1,5 +1,5 @@
 # About
-https://github.com/user-attachments/assets/7ce7b653-42ef-43e6-bfaf-dc3ac842de06
+![so_long](https://github.com/user-attachments/assets/121f2eee-d0b2-4966-adbd-3266b0f13e98)
 ## Introduction
 In this project, we'll code a simple 2D game to get familiar with the mlx library and UI in general. In my case, it's Mario.
 
